@@ -32,8 +32,8 @@ class Figure:  # класс фигуры
             self.__color = [r, g, b]
 
     def __is_valid_sides(self,*sides):## служебный метод проверки количества сторон
-        result = [i for i in sides if i > 0]
-        if len(result) == self.sides_count:
+
+        if len(sides) == self.sides_count:
             return True
         return False
 
