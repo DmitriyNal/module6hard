@@ -4,13 +4,18 @@ import math
 class Figure:  # класс фигуры
     sides_count = 0  # количество сторон
 
-    def __init__(self, __color: tuple, *__sides: int, filled: bool = True):
+
+    def __init__(self, __color: tuple, *__sides: int):
+        self.filled = True
+        self.__color = __color
+
         if len(__sides) != self.sides_count:
-            self.__sides = [1 * self.sides_count]
+            self.__sides = [1*self.sides_count]
         else:
             self.__sides = [i for i in __sides]
-        self.__color = __color
-        self.__filled = filled
+
+
+
 
     def get_color(self):#возвращает список RGB цветов
         return [i for i in self.__color]
@@ -21,9 +26,10 @@ class Figure:  # класс фигуры
                 return False
         return True
 
+
     def set_color(self, r, g, b):# установка цвета фигуры
         if self.__is_valid_color(r, g, b):
-            self.__color = (r, g, b)
+            self.__color = [r, g, b]
 
     def __is_valid_sides(self,*sides):## служебный метод проверки количества сторон
         result = [i for i in sides if i > 0]
@@ -40,7 +46,7 @@ class Figure:  # класс фигуры
     def set_sides(self, *new_sides):  # установка количества сторон
         if self.__is_valid_sides(*new_sides):
             self.__sides = new_sides
-        return self.__sides # возвращает список сторон
+
 
 
 class Circle(Figure):## класс круга
@@ -60,7 +66,7 @@ class Triangle(Figure):## класс треугольника
 
     def get_square(self):## возвращает площадь треугольника
         semiperimeter =self.__len__ / 2
-        S = math.sqrt((semiperimeter (semiperimeter - self.__sides[0]) (semiperimeter-self.__sides[1])
+        S = math.sqrt((semiperimeter * (semiperimeter - self.__sides[0]) * (semiperimeter-self.__sides[1]) *
                        (semiperimeter-self.__sides[2])))
         return S
 
